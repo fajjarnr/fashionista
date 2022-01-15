@@ -1,6 +1,28 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import CTA from 'components/CTA';
+import Featured from 'components/Featured';
+import Hero from 'components/Hero';
+import Incentive from 'components/Incentive';
+import Products from 'components/ProductList';
+import { getProductsInCollection } from 'lib/shopify';
 
-export default function Home() {
-  return <h1>Hai</h1>;
+export default function Home({ products }) {
+  console.log(products);
+
+  return (
+    <>
+      <Hero />
+      <Incentive />
+      <Featured />
+      <Products products={products} />
+      <CTA />
+    </>
+  );
+}
+
+export async function getStaticProps() {
+  const products = await getProductsInCollection();
+
+  return {
+    props: { products },
+  };
 }
