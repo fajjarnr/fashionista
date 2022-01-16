@@ -6,8 +6,6 @@ import Products from 'components/ProductList';
 import { getProductsInCollection } from 'lib/shopify';
 
 export default function Home({ products }) {
-  console.log(products);
-
   return (
     <>
       <Hero />

@@ -1,10 +1,7 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import {
-  MenuIcon,
-  SearchIcon,
-  ShoppingBagIcon,
-  XIcon,
-} from '@heroicons/react/outline';
+import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
+import MiniCart from 'components/MiniCart';
+import { CartContext } from 'context/ShopProvider';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, useContext, useState } from 'react';
@@ -18,6 +15,13 @@ const navigation = {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const { cart, cartOpen, setCartOpen } = useContext(CartContext);
+
+  let cartQuantity = 0;
+  cart.map((item) => {
+    return (cartQuantity += item?.variantQuantity);
+  });
 
   const router = useRouter();
 
@@ -99,7 +103,7 @@ export default function Navbar() {
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
                   <a>
-                    <span className="sr-only">Workflow</span>
+                    <span className="sr-only">Fashionista</span>
                     <img
                       className="h-8 w-auto"
                       src="/workflow.svg"
@@ -127,18 +131,20 @@ export default function Navbar() {
               <div className="ml-auto flex items-center">
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link href="/" passHref>
-                    <a className="group -m-2 p-2 flex items-center">
-                      <ShoppingBagIcon
-                        className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                        {/* {cart.cartItems.length > 0 ? cart.cartItems.length : 0} */}
-                      </span>
-                      <span className="sr-only">items in cart, view bag</span>
-                    </a>
-                  </Link>
+                  <a
+                    className="group -m-2 p-2 flex items-center"
+                    onClick={() => setCartOpen(!cartOpen)}
+                  >
+                    <ShoppingBagIcon
+                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                      {cartQuantity}
+                    </span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </a>
+                  <MiniCart cart={cart} />
                 </div>
               </div>
             </div>

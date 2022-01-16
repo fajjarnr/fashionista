@@ -1,3 +1,5 @@
+import ProductForm from './ProductForm';
+
 const item = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -133,7 +135,7 @@ export default function ProductDetail({ product }) {
           </div>
 
           {/* Options */}
-          {/* <ProductForm product={product} /> */}
+          <ProductForm product={product} />
 
           <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             {/* Description and details */}
