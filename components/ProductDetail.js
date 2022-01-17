@@ -1,3 +1,4 @@
+import { RadioGroup } from '@headlessui/react';
 import ProductForm from './ProductForm';
 
 const item = {
@@ -85,7 +86,7 @@ export default function ProductDetail({ product }) {
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {product.title}
               </a>
             </li>
           </ol>
@@ -130,7 +131,7 @@ export default function ProductDetail({ product }) {
         <div className="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-              {product.name}
+              {product.title}
             </h1>
           </div>
 

@@ -11,12 +11,10 @@ export default function ProductCard({ product }) {
   return (
     <div className="group relative">
       <div className="w-full h-96 rounded-lg overflow-hidden group-hover:opacity-75 sm:h-auto sm:aspect-w-2 sm:aspect-h-3">
-        <Image
+        <img
           src={originalSrc}
           alt={altText}
           className="w-full h-full object-center object-cover"
-          layout="fill"
-          objectFit="cover"
         />
       </div>
       <h3 className="mt-4 text-base font-semibold text-gray-900">
